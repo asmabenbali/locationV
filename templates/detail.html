@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Car Details</title>
+  <style>
+   * {
+      font-family: "poppins";
+      color: white;
+    }
+
+    body {
+      background-image: repeating-linear-gradient(90deg, rgba(146, 139, 139, 0.11) 0px, rgba(146, 139, 139, 0.11) 1px, transparent 1px, transparent 60px), repeating-linear-gradient(0deg, rgba(146, 139, 139, 0.11) 0px, rgba(146, 139, 139, 0.11) 1px, transparent 1px, transparent 60px), repeating-linear-gradient(0deg, rgba(146, 139, 139, 0.11) 0px, rgba(146, 139, 139, 0.11) 1px, transparent 1px, transparent 10px), repeating-linear-gradient(90deg, rgba(146, 139, 139, 0.11) 0px, rgba(146, 139, 139, 0.11) 1px, transparent 1px, transparent 10px), linear-gradient(90deg, rgb(20, 20, 20), rgb(20, 20, 20));
+      margin: 0;
+      padding: 0;
+      overflow: hidden; /* Hide overflow to prevent scrolling */
+    }
+
+    nav {
+      position: absolute;
+      top: 20px;
+      left: 160px; /* Changed from right to left */
+      font-weight: 400;
+      z-index: 1; /* Ensure the navbar stays above the background image */
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      text-shadow: 10px 13px 10px rgba(250, 236, 236, 0.5); /* Ajoute une ombre au texte */
+      font-size: 30px;
+    }
+
+    .card {
+      background-image: repeating-linear-gradient(90deg, rgba(146, 139, 139, 0.11) 0px, rgba(146, 139, 139, 0.11) 1px, transparent 1px, transparent 60px), repeating-linear-gradient(0deg, rgba(146, 139, 139, 0.11) 0px, rgba(146, 139, 139, 0.11) 1px, transparent 1px, transparent 60px), repeating-linear-gradient(0deg, rgba(146, 139, 139, 0.11) 0px, rgba(146, 139, 139, 0.11) 1px, transparent 1px, transparent 10px), repeating-linear-gradient(90deg, rgba(146, 139, 139, 0.11) 0px, rgba(146, 139, 139, 0.11) 1px, transparent 1px, transparent 10px), linear-gradient(90deg, rgb(20, 20, 20), rgb(20, 20, 20));
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      width: 90vw; /* Ajusté pour s'adapter à la fenêtre d'affichage */
+      display: flex;
+      flex-direction: row-reverse; /* Changed to reverse the row direction */
+      overflow: hidden; /* Assurez-vous que l'image ne dépasse pas de la carte */
+      margin: 20px; /* Ajout d'une marge autour de chaque carte */
+    }
+
+    .card-image {
+      max-width: 50%; /* Limite la largeur de l'image */
+      height: auto;
+      border-top-right-radius: 10px; /* Changed from left to right */
+      border-bottom-right-radius: 10px; /* Changed from left to right */
+    }
+
+    .card-info {
+      flex: 1;
+      padding: 20px;
+    }
+
+    .card h1 {
+      text-align: center;
+    }
+
+    .card table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .card table th,
+    .card table td {
+      padding: 10px;
+      border-bottom: 1px solid #000000;
+      text-align: left;
+    }
+
+    .card table th {
+      font-weight: bold;
+    }
+
+    .card a {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      background-color: rgb(28, 30, 28);
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .card:hover {
+      box-shadow: 0 10px 16px rgb(188, 184, 184); /* Ajout de l'ombre au survol */
+      transform: translateY(-15px); /* Déplacer légèrement la carte vers le haut */
+    }
+
+    .card a:hover {
+      background-color: rgb(237, 6, 6);
+    }
+  </style>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div id="loading-animation" class="loading-animation">
+    <div class="loader"></div>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="/" style="color: rgb(163, 156, 156); font-weight:600;font-size: 24px;">Home</a></li>
+      <li><a href="/about" style="color: rgb(163, 156, 156); font-weight:600;font-size: 24px;">About</a></li>
+      <li><a href=""><img alt=""></a></li>
+      <li><a href="/cars_html"  style="color: rgb(163, 156, 156); font-weight:600;font-size: 24px;">Cars</a></li>
+      <li><a href="/customer_login" style="color: rgb(163, 156, 156); font-weight:600;font-size: 24px;">LogIn</a></li>
+    </ul>
+  </nav>
+  <br><br><br><br>
+  <div class="car-details" style="margin-top: 70px;">
+    <div class="card">
+      <img class="card-image" src="../{{ car.image_url }}" alt="Car Image" />
+      <div class="card-info">
+        <center><h1 style="margin-left: 1px;">{{ car.marque }} {{ car.modele }}</h1></center> <!-- Changed from margin-right to margin-left -->
+        <table>
+          <tr>
+            <th>Modele</th>
+            <td>{{ car.modele }}</td>
+          </tr>
+          <tr>
+            <th>Prix</th>
+            <td><strong>{{ car.prix }}</strong> $/day</td>
+          </tr>
+          <tr>
+            <th>Immatriculation</th>
+            <td>{{ car.immatriculation }}</td>
+          </tr>
+          <tr>
+            <th>Categorie</th>
+            <td>{{ car.categorie }}</td>
+          </tr>
+          <tr>
+            <th>Disponiblety</th>
+            <td>{{ car.disponibilite }}</td>
+          </tr>
+        </table>
+        <a href="/reservation_form/{{ car.id }}">Book Now</a>
+      </div>
+    </div>
+  </div>
+  <script src="{{url_for('static',filename='script.js')}}"></script>
+</body>
+</html>

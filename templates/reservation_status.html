@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation Status</title>
+    <style>
+        /* Your CSS styles here */
+        body {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            
+            background-color: #e3dddd;
+        }
+
+        .container {
+            width: 900px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+        }
+
+        h3 {
+            color: #555;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid #ccc;
+            margin: 20px 0;
+        }
+
+        .logout-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+            color: black;
+            background-color: #ff2200;
+            padding: 10px 30px;
+        }
+
+        .logout-link:hover {
+            text-decoration: underline;
+            color: black;
+            background-color: #ff3c00;
+            padding: 10px 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Reservation Status</h2>
+        <div>
+            {% if client %}
+                <h3>Welcome, {{ client[1] }} {{ client[2] }}</h3>
+                <h3>Your Reservations:</h3>
+                <ul>
+                    {% for reservation in client[4] %}
+                        <li>
+                            <p>Reservation ID: {{ reservation[0] }}</p>
+                            <p>Status: {{ reservation[3] }}</p>
+                            <p>Car: {{ reservation[6] }}</p>
+                            <!-- Add cancellation option if status is 'Pending' -->
+                            {% if reservation[3] == 'Pending' %}
+                                <form action="/cancel_reservation/{{ reservation[0] }}" method="POST">
+                                    <button type="submit">Cancel Reservation</button>
+                                </form>
+                            {% endif %}
+                        </li>
+                        <hr>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        <a href="/" class="logout-link">Logout</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Car</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+      header {
+        background-image: url("{{ url_for('static', filename='photo/img/ot.gif') }}" );
+        background-size: cover;
+        background-position:top;
+        height: 120vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 1;
+      }
+      .choose-us {
+  background-color: white;
+  padding: 80px 0;
+}
+
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.choose-us h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.choose-us__items {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.choose-us__item {
+  flex: 1 1 300px;
+  padding: 20px;
+  margin: 20px;
+  text-align: center;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.choose-us__item i {
+  font-size: 48px;
+  color: #ff0000; /* Red color */
+  margin-bottom: 20px;
+  display: block;
+}
+
+.choose-us__item h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.choose-us__item p {
+  font-size: 16px;
+  color: #666;
+}
+
+    nav {
+  position: absolute;
+  top: 20px;
+  right: 70px;
+  font-weight: 400;
+  z-index: 1; /* Ensure the navbar stays above the background image */
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  text-shadow: 10px 13px 10px rgba(250, 236, 236, 0.5); /* Ajoute une ombre au texte */
+  font-size: 30px;
+  
+}
+
+
+
+
+      .client {
+  background-color: #f9f9f9;
+  padding: 60px 0;
+}
+
+.client__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.secondary-headline {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.client__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.client__card {
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.client__content {
+  padding: 20px;
+}
+
+.client__content img {
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #ccc;
+}
+.client__content img {
+  width: 900px; /* Largeur fixe pour l'image */
+  height: 80px; /* Hauteur fixe pour l'image */
+  border-radius: 50%; /* Appliquer un border-radius pour créer une forme de cercle */
+  object-fit: cover; /* Remplir l'espace avec l'image tout en conservant le ratio hauteur/largeur */
+}
+
+
+.client__content p {
+  margin-top: 20px;
+  color: #666;
+}
+
+.client__card:hover {
+  transform: translateY(-5px);
+}
+
+   
+.image {
+  width: 100%; /* Take up full width of grid cell */
+  height: 200px; /* Set a fixed height for uniformity */
+  overflow: hidden; /* Hide overflow to maintain uniformity */
+  position: relative; /* Add position relative */
+  gap: 50;
+}
+
+.image img {
+  width: 100%;
+  height: 100%; /* Fill the container */
+  object-fit: cover; /* Maintain aspect ratio */
+  transition: transform 0.3s ease; /* Add transition effect */
+}
+
+.image:hover img {
+  transform: scale(1.1); /* Zoom in on hover */
+}
+
+.image img {
+  position: absolute; /* Position absolute for all images */
+  top: 0;
+  left: 0;
+  width: 100%; /* Fill the container */
+  height: 100%; /* Fill the container */
+  object-fit: cover; /* Maintain aspect ratio */
+}
+.choose-us__item {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.choose-us__item:hover {
+  transform: translateY(-5px); /* Apply a translation on hover */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+  background-color: #f8f8f8; /* Change background color on hover */
+}
+.client__card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.client__card:hover {
+  transform: translateY(-5px); /* Apply a translation on hover */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+  background-color: #f8f8f8; /* Change background color on hover */
+}
+
+
+
+@media (max-width: 768px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr); /* Two columns for smaller screens */
+  }
+}
+
+      nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      nav ul li {
+        display: inline;
+        margin-right: 20px;
+      }
+
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+      }
+      body{
+        font-family: "poppins";
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="loading-animation" class="loading-animation">
+      <div class="loader"></div>
+    </div>
+    <header>
+      <!-- Navbar -->
+      <nav>
+        <ul>
+          <li><a href="" style="color: rgb(163, 156, 156); font-weight:600;font-size: 24px;">Home</a></li>
+          <li><a href="/cars_html" style="color: rgb(163, 156, 156);font-weight:600;font-size: 24px;">Cars</a></li>
+
+          <li style="margin-right: 130px;"><a href=""><img  alt=""/></a></li>
+          
+          
+
+          <li><a href="/customer_login" style="color: rgb(163, 156, 156);font-weight:600;font-size: 24px;">LogIn</a></li>
+          <li><a href="/login"><i style="color: rgb(163, 156, 156);font-weight:600;font-size: 24px;">Dashbord</i></a></li> 
+
+
+        </ul>
+      </nav>
+    </header>
+  
+
+
+
+
+
+
+
+
+     
+        
+
+      </div>
+    </header>
+
+
+<br><br>
+   
+    
+    
+
+                    
+
+
+
+
+
+                             <!-- why uuu choose us -->
+                             <section style="  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+                             " data-aos="fade-up"
+                             data-aos-duration="3000" class="choose-us">
+                              <div data-aos="fade-up"
+                              data-aos-duration="3000" class="container">
+                                <center><h1 style="  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+                                  ;font-size: 40px;  ">Why Choose <span style="color: red;">Us</span></h1></center>
+                                <br><div class="choose-us__items">
+                                  <div class="choose-us__item">
+                                    <i class="fas fa-car"></i>
+                                    <h3>Wide Selection of Cars</h3>
+                                    <p>Choose from a variety of car types to suit your needs.</p>
+                                  </div>
+                                  <div class="choose-us__item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <h3>Quality Assurance</h3>
+                                    <p>Our cars undergo regular maintenance to ensure safety and reliability.</p>
+                                  </div>
+                                  <div class="choose-us__item">
+                                    <i class="fas fa-user-clock"></i>
+                                    <h3>24/7 Customer Support</h3>
+                                    <p>Our dedicated support team is available around the clock to assist you.</p>
+                                  </div>
+                                  <div class="choose-us__item">
+                                    <i class="fas fa-hand-holding-usd"></i>
+                                    <h3>Affordable Prices</h3>
+                                    <p>We offer competitive prices and special discounts for long-term rentals.</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </section>
+                          
+                            
+
+
+                            <section class="sec1" style="  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+                            ">
+                              <div data-aos="fade-up"
+                              data-aos-duration="3000" class="sec-head">
+                                <h1 ><span>How</span> it Works</h1>
+                                <p>
+                                
+                                </p>
+                              </div>
+                              <div data-aos="fade-up"
+                              data-aos-duration="3000" class="boxs">
+                                <div data-aos="fade-up"
+                                data-aos-duration="3000" class="box">
+                                  <i class="fas fa-map-marker-alt icon" style="color: red; font-size: 48px;"></i>
+                                  <h2>Step 1: Choose Your Location</h2>
+                                  <p data-aos="fade-up"
+                                  data-aos-duration="3000">
+                                  Explore <br> various destinations, each offering unique experiences and adventures. 
+                                   Whether 
+                                  </p>
+                                </div>
+                                <div data-aos="fade-up"
+                                data-aos-duration="3000" class="box">
+                                  <i class="far fa-calendar-alt icon" style="color: red; font-size: 48px;"></i>
+                                  <h2>Step 2: Select Your Date</h2>
+                                  <p data-aos="fade-up"
+                                  data-aos-duration="3000">
+                                  select <br> the dates that will make your trip unforgettable. Choose the ideal dates for your journey
+                                  </p>
+                                </div>
+                                <div data-aos="fade-up"
+                                data-aos-duration="3000" class="box">
+                                  <i class="fas fa-car icon" style="color: red; font-size: 48px;"></i>
+                                  <h2>Step 3: Choose Your Car</h2>
+                                  <p>
+                                    Discover <br>
+                                     our diverse range of vehicles tailored to suit every travel need and preference. From sleek 
+                                  </p>
+                                </div>
+                              </div>
+                            </section>
+
+                            <!-- <center><h2>Image Gallery</h2></center>
+
+
+
+                            <div class="gallery" style="margin-left: 400px;">
+                              <div class="image"><img src="{{ url_for('static', filename='photo/img/image33.jpg') }}" alt="Image 3"></div>
+                              <div class="image"><img src="{{ url_for('static', filename='photo/img/image44.jpg') }}" alt="Image 4"></div>
+
+                              <div class="image"><img src="{{ url_for('static', filename='photo/img/image11.jpg') }}" alt="Image 1"></div>
+                              <div class="image"><img src="{{ url_for('static', filename='photo/img/image55.jpg') }}" alt="Image 5"></div>
+                              <div class="image"><img src="{{ url_for('static', filename='photo/img/image555.jpg') }}" alt="Image 2"></div>
+                              <div class="image"><img src="{{ url_for('static', filename='photo/img/image66.jpg') }}" alt="Image 2"></div>
+                             
+                            </div>
+                            <div>
+                              <center>
+                                <button style="margin-left: 0px;">
+                                    <a href="/cars_html" style="text-decoration: none; color: inherit;">More</a>
+                                </button>
+                            </center>
+                            
+                            </div> -->
+
+
+
+
+
+
+
+
+
+                            <section data-aos="fade-up"
+                            data-aos-duration="2000" class="client" >
+                              <div data-aos="fade-up"
+                              data-aos-duration="2000"  class="section__container client__container">
+                               <center> <h1 data-aos="fade-up"
+                                data-aos-duration="2000" class="secondary-headline" style="  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+                                ;font-size: 40px; ">What <span style="color: red;">our clients</span> say</h1></center>
+                                <div data-aos="fade-up"
+                                data-aos-duration="2000" class="client__grid">
+                                  <div data-aos="fade-up" 
+                                  data-aos-duration="2000" class="client__card" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
+                                    <div class="client__content">
+                                      <img src="{{url_for('static',filename='photo/img/E.jpg')}}" alt="Client 1">
+                                      <p data-aos="fade-up"
+                                      data-aos-duration="2000">
+                                        "The booking process was seamless, and the confirmation was
+                                        instant. I highly recommend WDM&Co for hassle-free hotel bookings."
+                                      </p>
+                                    </div>
+                                  </div>
+                                 
+                                  </div>
+                                  <div class="client__card" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
+                                    <div class="client__content">
+                                      <img src="{{url_for('static',filename='photo/img/bb.jpg')}}" alt="Client 3">
+                                      <p>
+                                        "I was able to book a room within minutes, and the hotel exceeded
+                                        my expectations. I appreciate WDM&Co's efficiency and reliability."
+                                      </p>
+                                    </div>
+                                  </div>
+                                  <br>
+                                  <div class="client__card" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
+                                    <div class="client__content">
+                                      <img src="{{ url_for('static', filename='photo/img/bbb.jpg') }}" alt="Image 3">                                      <p>
+                                        "The website provided detailed information about the hotel, including
+                                        amenities and photos, which helped me make an informed decision."
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                                
+                                
+                              </div>
+                            </section>
+                            
+                            
+
+
+                
+  <footer class="footer">
+      <div class="section__container footer__container">
+        <div class="footer__col">
+          <img src="{{url_for('static',filename='photo/img/k.gif')}}" alt="" />
+         
+        
+        </div>
+        <div class="footer__col" style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
+          <h4>Company</h4>
+          <p>About Us</p>
+          <p>Blog</p>
+          <p>Book</p>
+          <p>Contact Us</p>
+        </div>
+        <div class="footer__col">
+          <h4>Legal</h4>
+          <p>FAQs</p>
+          <p>Terms & Conditions</p>
+          <p>Privacy Policy</p>
+        </div>
+        <div class="footer__col">
+          <h4>Resources</h4>
+          <p>Social Media</p>
+          <p>
+            <!-- <a href="/login"><i class="fa-brands fa-facebook"></i></a> -->
+            <a href=""><i class="fa-brands fa-twitter"></i></a>
+            <a href=""><i class="fa-brands fa-instagram"></i></a>
+            <a href=""><i class="fa-brands fa-youtube"></i></a>
+            <a href=""><i class="fa-brands fa-tiktok"></i></a>
+          </p>
+          <p>Partnerships</p>
+        </div>
+      </div>
+      <div class="footer__bar">
+      </div>
+    </footer>
+    <script>
+      let cars = [];
+      let currentCarIndex = 0;
+      const carContainer = document.getElementById("car-container");
+
+      // Function to fetch cars from Flask backend
+      function fetchCars() {
+        fetch("/cars")
+          .then((response) => response.json())
+          .then((data) => {
+            cars = data;
+            displayCar(currentCarIndex);
+          })
+          .catch((error) => console.error("Error fetching cars:", error));
+      }
+
+      function displayCar(index) {
+        const car = cars[index];
+        carContainer.innerHTML = `
+              <img src="${car.image_url}" alt="Car Image">
+              <h2>${car.marque} ${car.modele}</h2>
+              
+              
+              
+          `;
+      }
+
+      function showNextCar() {
+        currentCarIndex = (currentCarIndex + 1) % cars.length;
+        displayCar(currentCarIndex);
+      }
+
+      function showPreviousCar() {
+        currentCarIndex = (currentCarIndex - 1 + cars.length) % cars.length;
+        displayCar(currentCarIndex);
+      }
+
+      // Fetch cars when the page loads
+      document.addEventListener("DOMContentLoaded", fetchCars);
+
+      document
+        .getElementById("next-btn")
+        .addEventListener("click", showNextCar);
+      document
+        .getElementById("prev-btn")
+        .addEventListener("click", showPreviousCar);
+    </script>
+    <script src="{{url_for('static',filename='script.js')}}"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+      AOS.init();
+    </script>
+  </body>
+</html>

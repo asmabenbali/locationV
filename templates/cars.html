@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylecars.css') }}">
+      <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+
+  <title>Available Cars</title>
+  <style>
+    /* stylecars.css */
+    body {
+      color: white;
+      font-weight:800;
+      font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      background-image: repeating-linear-gradient(90deg, rgba(146,139,139, 0.11) 0px, rgba(146,139,139, 0.11) 1px,transparent 1px, transparent 60px),repeating-linear-gradient(0deg, rgba(146,139,139, 0.11) 0px, rgba(146,139,139, 0.11) 1px,transparent 1px, transparent 60px),repeating-linear-gradient(0deg, rgba(146,139,139, 0.11) 0px, rgba(146,139,139, 0.11) 1px,transparent 1px, transparent 10px),repeating-linear-gradient(90deg, rgba(146,139,139, 0.11) 0px, rgba(146,139,139, 0.11) 1px,transparent 1px, transparent 10px),linear-gradient(90deg, rgb(20,20,20),rgb(20,20,20));
+    }
+    .car-image {
+  width: 250px; /* Ajustez selon vos besoins */
+  height: auto;
+  animation: rotateImage 5s linear forwards; /* Durée de l'animation: 5 secondes */
+}
+
+
+
+    nav {
+  position: absolute;
+  top: 20px;
+  right: 120px;
+  font-weight: 400;
+  z-index: 1; /* Ensure the navbar stays above the background image */
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  text-shadow: 10px 13px 10px white; /* Ajoute une ombre au texte */
+  font-size: 30px;
+  
+}
+
+    h1 {
+      color: white;
+    }
+
+    nav ul li a {
+      color: white;
+    }
+
+    .car-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .car-card {
+      text-align: center;
+      margin: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+      border-radius: 10px;
+      overflow: hidden;
+      font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+    }
+
+    .car-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 30px white;
+      background-image: repeating-linear-gradient(0deg, rgba(166,166,166, 0.17) 0px, rgba(166,166,166, 0.17) 1px,transparent 1px, transparent 11px),repeating-linear-gradient(90deg, rgba(166,166,166, 0.17) 0px, rgba(166,166,166, 0.17) 1px,transparent 1px, transparent 11px),linear-gradient(90deg, rgba(20,20,20, 0.88),rgba(20,20,20, 0.88));}
+    .car-image {
+      width: 250px; /* Adjust as needed */
+      height: auto;
+    }
+
+    .car-card h2, .car-card p {
+      color: white;
+      font-weight: bold;
+      font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+    }
+
+    .btns {
+      margin-top: 10px;
+    }
+
+    .btns a {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: rgba(250, 236, 236, 0.5);
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-family: cursive;
+      font-weight: bold;
+    }
+
+    .btns a:hover {
+
+background-color: red;}
+
+    
+    
+
+  </style>
+</head>
+<body >
+  <div data-aos="fade-up" data-aos-duration="1000" id="loading-animation" class="loading-animation">
+    <div data-aos="fade-up" data-aos-duration="1000" class="loader"></div>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="" style="color: rgb(163, 156, 156); font-weight:600;font-size: 24px;">Home</a></li>
+      <li><a href="/cars_html" style="color: rgb(163, 156, 156);font-weight:600;font-size: 24px;">Cars</a></li>
+
+      <li style="margin-right: 130px;"><a href=""><img  alt=""/></a></li>
+      
+      
+
+      <li><a href="/customer_login" style="color: rgb(163, 156, 156);font-weight:600;font-size: 24px;">LogIn</a></li>
+      <li><a href="/login"><i style="color: rgb(163, 156, 156);font-weight:600;font-size: 24px;">Dashbord</i></a></li> 
+
+
+    </ul>
+  </nav>
+  <br><br><br><br><br><br><br><br><br><br>
+  <h1  style="color: rgb(163, 156, 156); font-weight:600;font-size: 29px;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Click it for buy</h1> <br>
+<div  data-aos="fade-up" data-aos-duration="1000" class="car-container">
+    {% for car in cars %}
+    <div data-aos="fade-up" data-aos-duration="1000" class="car-card" style="background-image: repeating-linear-gradient(0deg, hsla(202,0%,65%,0.08) 0px, hsla(202,0%,65%,0.08) 1px,transparent 1px, transparent 11px),repeating-linear-gradient(90deg, hsla(202,0%,65%,0.08) 0px, hsla(202,0%,65%,0.08) 1px,transparent 1px, transparent 11px),linear-gradient(90deg, rgb(20,20,20),rgb(20,20,20)); ">
+      <img class="car-image" src="{{ car[7] }}" alt="Car Image">
+      <br><br><br>
+      <h2>{{ car[1] }} {{ car[2] }}</h2>
+      <p class="price"><strong>{{ car[5] }}</strong>$ </p>
+      <p><strong>Immatriculation:</strong> {{ car[3] }}</p>
+      <p><strong>Category:</strong> {{ car[4] }}</p>
+      <br><br>
+      <div class="btns">
+        <a href="{{ url_for('car_detail', car_id=car[0]) }}">More of Info</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+</body>
+</html>

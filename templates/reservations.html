@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<!-- My CSS -->
+	<link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='styleman.css') }}"
+    />
+
+	<title>Manager_Dashboard</title>
+</head>
+<style>
+    body {
+		background-image: repeating-linear-gradient(90deg, rgba(146, 139, 139, 0.11) 0px, rgba(146, 139, 139, 0.11) 1px, transparent 1px, transparent 60px), repeating-linear-gradient(0deg, rgba(146, 139, 139, 0.11) 0px, rgba(146, 139, 139, 0.11) 1px, transparent 1px, transparent 60px), repeating-linear-gradient(0deg, rgba(146, 139, 139, 0.11) 0px, rgba(146, 139, 139, 0.11) 1px, transparent 1px, transparent 10px), repeating-linear-gradient(90deg, rgba(146, 139, 139, 0.11) 0px, rgba(146, 139, 139, 0.11) 1px, transparent 1px, transparent 10px), linear-gradient(90deg, rgb(20, 20, 20), rgb(20, 20, 20));
+
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 40px;
+}
+
+.reservation-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 30px;
+    margin: 0 auto;
+
+}
+
+.reservation-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 80%;
+    max-width: 600px;
+}
+nav ul {
+        display: flex;
+        list-style: none;
+        padding: 0;
+    }
+
+    nav ul li {
+        margin-left: 59px;
+    }
+
+    nav ul li:last-child {
+        margin-right: 0;
+    }
+
+    nav a {
+        text-decoration: none;
+        color: rgb(255, 244, 244);
+        font-weight: 600;
+        font-size: 20px;
+        margin-left:    10px;
+    }
+
+    nav a:hover {
+        color: rgb(213, 220, 220);
+    }
+
+
+.reservation-item p {
+    margin: 5px 0;
+}
+
+.accept-button,
+.refuse-button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+.accept-button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.refuse-button {
+    background-color: #f44336;
+    color: white;
+}
+
+</style>
+<body style="font-family: cursive;font-weight: 900;">
+
+
+	<!-- SIDEBAR -->
+	<nav>
+		<a href="/" class="brand"></a>
+		<ul class="side-menu top">
+			<li>
+				<a href="/home">
+					<i class='bx bxs-dashboard' ></i>
+					<span class="text">Dashboard</span>
+				</a>
+			</li>
+			<li>
+				<a href="/manager_cars">
+					<i class='bx bxs-car'></i>
+					<span class="text">Cars</span>
+				</a>
+			</li>
+			<li>
+				<a href="/manager_dashboard">
+					<i class='bx bxs-message-square-add'></i>
+					<span class="text">Add Cars</span>
+				</a>
+			</li>
+			<li class="active">
+				<a href="#">
+					<i class='bx bxs-bookmark-alt-plus'></i>
+					<span class="text">Reservation</span>
+				</a>
+			</li>
+	   
+	  
+			<li>
+				<a href="#">
+					<i class='bx bxs-user'></i>
+					<span class="text">Client</span>
+				</a>
+			</li>
+			<li>
+				<a href="/" class="logout">
+					<i class='bx bxs-log-out-circle' ></i>
+					<span class="text">Logout</span>
+				</a>
+			</li>
+		</ul>
+	</nav>
+	<!-- SIDEBAR -->
+	
+
+
+
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- NAVBAR -->
+		
+		<!-- MAIN -->
+		<main>
+			 
+			<div class="head-title">
+				<div class="left">
+				</div>
+			</div>
+
+			<center>
+				<div class="reservation-list">
+					{% for reservation in reservations %}
+					<div class="reservation-item">
+						<p>ID: {{ reservation.id_reservation }}</p>
+						<p>Id Client: {{ reservation.id_client }}</p>
+						<p>Car: {{ reservation.id_voiture }}</p>
+						<p>Status: {{ reservation.status }}</p>
+						<form action="/accept_reservation/{{ reservation.id_reservation }}" method="post">
+							<button type="submit" class="accept-button">Accept</button>
+						</form>
+						<form action="/refuse_reservation/{{ reservation.id_reservation }}" method="post">
+							<button type="submit" class="refuse-button">Refuse</button>
+						</form>
+					</div>
+					{% endfor %}
+				</div>
+			</center>
+            
+            
+		</main>
+		<!-- MAIN -->
+	</section>
+	<!-- CONTENT -->
+	
+
+	<script src="{{url_for('static', filename='js.js')}}"></script>
+</body>
+</html>

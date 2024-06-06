@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<!-- My CSS -->
+  <style>
+     nav ul {
+        display: flex;
+        list-style: none;
+        padding: 0;
+    }
+
+    nav ul li {
+        margin-left: 59px;
+    }
+
+    nav ul li:last-child {
+        margin-right: 0;
+    }
+    body {
+            font-family:cursive;
+            font-weight: 900;
+            background-image: repeating-linear-gradient(90deg, rgba(146, 139, 139, 0.11) 0px, rgba(146, 139, 139, 0.11) 1px, transparent 1px, transparent 60px), repeating-linear-gradient(0deg, rgba(146, 139, 139, 0.11) 0px, rgba(146, 139, 139, 0.11) 1px, transparent 1px, transparent 60px), repeating-linear-gradient(0deg, rgba(146, 139, 139, 0.11) 0px, rgba(146, 139, 139, 0.11) 1px, transparent 1px, transparent 10px), repeating-linear-gradient(90deg, rgba(146, 139, 139, 0.11) 0px, rgba(146, 139, 139, 0.11) 1px, transparent 1px, transparent 10px), linear-gradient(90deg, rgb(20, 20, 20), rgb(20, 20, 20));
+            color: rgb(230, 218, 218);
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+    nav a {
+        text-decoration: none;
+        color: rgb(255, 254, 254);
+        font-weight: 600;
+        font-size: 20px;
+        margin-left:    10px;
+    }
+
+    nav a:hover {
+        color: rgb(213, 220, 220);
+    }
+
+  </style>
+	<link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='styleman.css') }}"
+    />
+
+	<title>Manager_Dashboard</title>
+</head>
+<body style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;font-weight: 900;            background-image: repeating-linear-gradient(90deg, rgba(146, 139, 139, 0.11) 0px, rgba(146, 139, 139, 0.11) 1px, transparent 1px, transparent 60px), repeating-linear-gradient(0deg, rgba(146, 139, 139, 0.11) 0px, rgba(146, 139, 139, 0.11) 1px, transparent 1px, transparent 60px), repeating-linear-gradient(0deg, rgba(146, 139, 139, 0.11) 0px, rgba(146, 139, 139, 0.11) 1px, transparent 1px, transparent 10px), repeating-linear-gradient(90deg, rgba(146, 139, 139, 0.11) 0px, rgba(146, 139, 139, 0.11) 1px, transparent 1px, transparent 10px), linear-gradient(90deg, rgb(20, 20, 20), rgb(20, 20, 20));
+">
+
+
+    
+<nav>
+  <a href="/" class="brand"></a>
+  <ul class="side-menu top">
+      <li>
+          <a href="/home">
+              <i class='bx bxs-dashboard' ></i>
+              <span class="text">Dashboard</span>
+          </a>
+      </li>
+      <li>
+          <a href="/manager_cars">
+              <i class='bx bxs-car'></i>
+              <span class="text">Cars</span>
+          </a>
+      </li>
+      <li>
+          <a href="/manager_dashboard">
+              <i class='bx bxs-message-square-add'></i>
+              <span class="text">Add Cars</span>
+          </a>
+      </li>
+      <li class="active">
+          <a href="/reservations">
+              <i class='bx bxs-bookmark-alt-plus'></i>
+              <span class="text">Reservation</span>
+          </a>
+      </li>
+ 
+
+      <li>
+          <a href="#">
+              <i class='bx bxs-user'></i>
+              <span class="text">Client</span>
+          </a>
+      </li>
+      <li>
+          <a href="/" class="logout">
+              <i class='bx bxs-log-out-circle' ></i>
+              <span class="text">Logout</span>
+          </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+	<!-- CONTENT -->
+	<section  id="content">
+	
+       
+		<!-- NAVBAR -->
+		<!-- NAVBAR -->
+
+		<!-- MAIN -->
+		<main>
+			<div class="head-title">
+				<div class="left">
+				</div>
+			</div>
+            <div class="content" style="margin-left: 70px;">
+                <form action="/add_car" method="POST" enctype="multipart/form-data">
+                  <div class="form_item">
+                  <label for="marque">Marque:</label>
+                  <input type="text" id="marque" name="marque" required /><br /><br />
+              </div>
+                  <div class="form_item">
+                  <label for="modele">Modele:</label>
+                  <input type="text" id="modele" name="modele" required /><br /><br />
+              </div>
+                  <div class="form_item">
+                  <label for="immatriculation">Immatriculation:</label>
+                  <input
+                    type="text"
+                    id="immatriculation"
+                    name="immatriculation"
+                    required
+                  /><br /><br />
+              </div>
+                  <div class="form_item">
+                  <label for="categorie">Categorie:</label>
+                  <input
+                    type="text"
+                    id="categorie"
+                    name="categorie"
+                    required
+                  /><br /><br />
+              </div>
+                  <div class="form_item">
+                  <label for="prix">Prix:</label>
+                  <input type="text" id="prix" name="prix" required /><br /><br />
+              </div>
+                  <div class="form_item">
+                  <label for="disponibilite">Disponibilite:</label>
+                  <input
+                    type="text"
+                    id="disponibilite"
+                    name="disponibilite"
+                    required
+                  /><br /><br />
+              </div>
+                  <div class="form_item">
+                  <label for="image_url">Image:</label>
+                  <input
+                    type="file"
+                    name="image_url"
+                    accept="image/*"
+                    required
+                  />
+              </div>
+              
+                  <div class="form_item">
+                  <button type="submit" style="margin-left: 40px;margin-top: 29px;">Add Car</button>
+              </div>
+                </form>
+              </div>
+
+			
+		</main>
+		<!-- MAIN -->
+	</section>
+	<!-- CONTENT -->
+	
+
+	<script src="{{url_for('static', filename='js.js')}}"></script>
+</body>
+</html>

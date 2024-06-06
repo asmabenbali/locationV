@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylecars.css') }}">
+  <title>Available Cars</title>
+  <style>
+    /* Existing styles from stylecars.css */
+    body {
+            font-family:cursive;
+            font-weight: 900;
+            background-image: repeating-linear-gradient(90deg, rgba(146, 139, 139, 0.11) 0px, rgba(146, 139, 139, 0.11) 1px, transparent 1px, transparent 60px), repeating-linear-gradient(0deg, rgba(146, 139, 139, 0.11) 0px, rgba(146, 139, 139, 0.11) 1px, transparent 1px, transparent 60px), repeating-linear-gradient(0deg, rgba(146, 139, 139, 0.11) 0px, rgba(146, 139, 139, 0.11) 1px, transparent 1px, transparent 10px), repeating-linear-gradient(90deg, rgba(146, 139, 139, 0.11) 0px, rgba(146, 139, 139, 0.11) 1px, transparent 1px, transparent 10px), linear-gradient(90deg, rgb(20, 20, 20), rgb(20, 20, 20));
+            color: white;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+    h1 {
+      color: white;
+    }
+
+    nav ul li a {
+      color: white;
+    }
+
+    .car-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .car-card {
+      text-align: center;
+      margin: 20px;
+    }
+
+    .car-image {
+      width: 250px; /* Adjust as needed */
+      height: auto;
+    }
+
+    .car-card h2, .car-card p {
+      color: white;
+      font-family: cursive;
+      font-weight: bold;
+    }
+
+    .btns {
+      margin-top: 10px;
+    }
+
+    .btns a {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-family: cursive;
+      font-weight: bold;
+    }
+
+    .btns a:hover {
+      background-color: #45a049;
+    }
+
+    /* Additional styles for the reservation form */
+    .form-container {
+      max-width: 400px;
+      margin: 0 auto; /* Center horizontally */
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-top: 50px; /* Adjust as needed */
+    }
+
+    .form-container form {
+      background-color: black;
+      color: rgb(19, 18, 18);
+      padding: 20px;
+      border: 2px solid red;
+      border-radius: 8px;
+      
+    }
+
+    .form-container label {
+      color: white;
+    }
+
+    .form-container input[type="text"],
+    .form-container input[type="email"],
+    .form-container input[type="tel"] {
+      background-color: #333;
+      color: white;
+      border: 1px solid #ccc; /* This is just a fallback */
+      border-radius: 4px;
+      padding: 8px;
+      margin-bottom: 10px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .form-container input[type="submit"] {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      padding: 10px 20px;
+    }
+
+    .form-container input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+    nav {
+  position: absolute;
+  top: 20px;
+  right: 260px;
+  font-weight: 400;
+  z-index: 1; /* Ensure the navbar stays above the background image */
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  text-shadow: 10px 13px 10px rgba(250, 236, 236, 0.5); /* Ajoute une ombre au texte */
+  font-size: 30px;
+  
+}
+.form-container form:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Add shadow on hover */
+  transform: translateY(-2px); /* Move the form slightly up on hover */
+  transition: all 0.3s ease; /* Smooth transition */
+}
+.form-container form:hover {
+  box-shadow: 0 10 50px white; /* Add shadow on hover */
+  transform: translateY(-2px); /* Move the form slightly up on hover */
+  transition: all 0.3s ease; /* Smooth transition */
+}
+
+
+/* Adjust hover styles for input fields */
+.form-container input[type="text"]:hover,
+.form-container input[type="email"]:hover,
+.form-container input[type="tel"]:hover,
+.form-container input[type="submit"]:hover {
+  background-color: #555; /* Darken background color on hover */
+}
+
+    .error-message {
+      color: red;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="/" style="color: rgb(163, 156, 156); font-weight:600;font-size: 24px;">Home</a></li>
+      <li><a href="/about" style="color: rgb(163, 156, 156); font-weight:600;font-size: 24px;">About</a></li>
+      <li><a href=""><img alt=""></a></li>
+      <li><a href="/cars_html"  style="color: rgb(163, 156, 156); font-weight:600;font-size: 24px;">Cars</a></li>
+      <li><a href="/customer_login" style="color: rgb(163, 156, 156); font-weight:600;font-size: 24px;">LogIn</a></li>
+    </ul>
+  </nav>
+  <br><br><br><br>
+  <div class="car-container" style="            background-image: repeating-linear-gradient(90deg, rgba(146, 139, 139, 0.11) 0px, rgba(146, 139, 139, 0.11) 1px, transparent 1px, transparent 60px), repeating-linear-gradient(0deg, rgba(146, 139, 139, 0.11) 0px, rgba(146, 139, 139, 0.11) 1px, transparent 1px, transparent 60px), repeating-linear-gradient(0deg, rgba(146, 139, 139, 0.11) 0px, rgba(146, 139, 139, 0.11) 1px, transparent 1px, transparent 10px), repeating-linear-gradient(90deg, rgba(146, 139, 139, 0.11) 0px, rgba(146, 139, 139, 0.11) 1px, transparent 1px, transparent 10px), linear-gradient(90deg, rgb(20, 20, 20), rgb(20, 20, 20));
+  ">
+    {% for car in cars %}
+    <div class="car-card">
+      <img class="car-image" src="{{ car[7] }}" alt="Car Image">
+      <br><br><br>
+      <h2>{{ car[1] }} {{ car[2] }}</h2>
+      <p class="price"><strong>{{ car[5] }}</strong>$ </p>
+      <p><strong>Immatriculation:</strong> {{ car[3] }}</p>
+      <p><strong>Category:</strong> {{ car[4] }}</p>
+      <div class="btns">
+        <a href="{{ url_for('car_detail', car_id=car[0]) }}">Voir Plus Info</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Reservation Form -->
+  <div class="form-container">
+    
+    <form action="{{ url_for('submit_reservation', car_id=car_id) }}" method="POST" >
+<center>        <label for="name">Name:</label>
+</center>        <input type="text" id="name" name="name" required><br>
+
+<center>        <label for="email">Email:</label>
+</center>        <input type="email" id="email" name="email" required><br>
+
+<center>        <label for="phone">Phone:</label>
+</center>        <input type="tel" id="phone" name="phone" required><br>
+
+<center>
+    <input type="submit" value="Submit Reservation" style="background-color: red;color: wheat;">
+
+</center>    </form>
+  </div>
+</body>
+</html>

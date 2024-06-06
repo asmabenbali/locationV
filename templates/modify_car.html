@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Boxicons -->
+    <link
+      href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <!-- My CSS -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='styleman.css') }}"
+    />
+
+    <title>Manager_Dashboard</title>
+  </head>
+  <style>body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container form{
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.form-content {
+    grid-column: span 1;
+}
+
+nav ul {
+        display: flex;
+        list-style: none;
+        padding: 0;
+    }
+
+    nav ul li {
+        margin-left: 59px;
+    }
+
+    nav ul li:last-child {
+        margin-right: 0;
+    }
+
+    nav a {
+        text-decoration: none;
+        color: rgb(255, 244, 244);
+        font-weight: 600;
+        font-size: 20px;
+        margin-left:    10px;
+    }
+
+    nav a:hover {
+        color: rgb(213, 220, 220);
+    }
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background-color: #D23D34;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #342E37;
+    color: #D23D34;
+}
+
+  </style>
+  <body style="background-color: rgb(255, 255, 255);">
+   
+
+    <!-- CONTENT -->
+    <section id="content">
+      <!-- NAVBAR -->
+      <nav>
+       
+          <li>
+            <a href="/home">
+              <i class='bx bxs-dashboard' ></i>
+              <span class="text">Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="/manager_cars">
+              <i class='bx bxs-car'></i>
+              <span class="text">Cars</span>
+            </a>
+          </li>
+          <li>
+            <a href="/manager_dashboard">
+              <i class='bx bxs-message-square-add'></i>
+              <span class="text">Add Cars</span>
+            </a>
+          </li>
+          <li class="active">
+            <a href="#">
+              <i class='bx bxs-bookmark-alt-plus'></i>
+              <span class="text">Reservation</span>
+            </a>
+          </li>
+         
+        
+          <li>
+            <a href="#">
+              <i class='bx bxs-user'></i>
+              <span class="text">Client</span>
+            </a>
+          </li>
+          <li>
+            <a href="/" class="logout">
+              <i class='bx bxs-log-out-circle' ></i>
+              <span class="text">Logout</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- NAVBAR -->
+
+      <!-- MAIN -->
+      <main>
+
+        <div class="container">
+          <form style="margin-left: 26px;"
+            action="{{ url_for('modify_car_post', car_id=car.id) }}"
+            method="post"
+            enctype="multipart/form-data"
+          >
+            <div class="form-content">
+              <label for="marque">Marque:</label>
+              <input
+                type="text"
+                id="marque"
+                name="marque"
+                value="{{ car.marque }}"
+              />
+            </div>
+            <div class="form-content">
+              <label for="modele">Modèle:</label>
+              <input
+                type="text"
+                id="modele"
+                name="modele"
+                value="{{ car.modele }}"
+              />
+            </div>
+            <div class="form-content">
+              <label for="immatriculation">Immatriculation:</label>
+              <input
+                type="text"
+                id="immatriculation"
+                name="immatriculation"
+                value="{{ car.immatriculation }}"
+              />
+            </div>
+            <div class="form-content">
+              <label for="categorie">Catégorie:</label>
+              <input
+                type="text"
+                id="categorie"
+                name="categorie"
+                value="{{ car.categorie }}"
+              />
+            </div>
+            <div class="form-content">
+              <label for="prix">Prix:</label>
+              <input type="text" id="prix" name="prix" value="{{ car.prix }}" />
+            </div>
+            <div class="form-content">
+              <label for="disponibilite">Disponibilité:</label>
+              <input
+                type="text"
+                id="disponibilite"
+                name="disponibilite"
+                value="{{ car.disponibilite }}"
+              />
+            </div>
+            <div class="form-content">
+              <!-- Input field for the image -->
+              <label for="image_url">Image:</label>
+              <input type="file" id="image_url" name="image_url" />
+            </div><br>
+            <center><div class="form-content" style="margin-left: 200px;">
+              <input type="submit" value="Modify Car" />
+            </div></center>
+          </form>
+        </div>
+      </main>
+      <!-- MAIN -->
+    </section>
+    <!-- CONTENT -->
+
+    <script src="{{url_for('static', filename='js.js')}}"></script>
+  </body>
+</html>
